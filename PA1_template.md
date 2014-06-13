@@ -7,16 +7,16 @@ Show any code that is needed to
 
 1. Load the data (i.e. read.csv())
 
-```{r echo = TRUE}
-dat <- read.csv("activity.csv")
 
+```r
+dat <- read.csv("activity.csv")
 ```
+
 
 2. Process/transform the data (if necessary) into a format suitable for your analysis
 
-```{r echo = TRUE}
 
-```
+
 
 ## What is mean total number of steps taken per day?
 
@@ -24,37 +24,49 @@ For this part of the assignment, you can ignore the missing values in the datase
 
 1. Make a histogram of the total number of steps taken each day
 
-```{r echo = TRUE}
+
+```r
 steps_perday <- tapply(dat$steps, dat$date, sum, na.rm = TRUE)
-hist(steps_perday, breaks=20)
+hist(steps_perday, breaks = 20)
 ```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+
 
 2. Calculate and report the mean and median total number of steps taken per day
 
-```{r echo = TRUE}
+
+```r
 meansteps_perday = mean(steps_perday)
 mediansteps_perday = median(steps_perday)
 ```
 
-mean and median total number of steps taken per day are `r meansteps_perday` and `r mediansteps_perday`
+
+mean and median total number of steps taken per day are 9354.2295 and 10395
 
 ## What is the average daily activity pattern?
 
 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
-```{r echo = TRUE}
+
+```r
 steps_perinterval <- tapply(dat$steps, dat$interval, mean, na.rm = TRUE)
 intervals <- dimnames(steps_perinterval)[[1]]
 plot(intervals, steps_perinterval)
 ```
 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
+
+
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
-```{r echo = TRUE}
+
+```r
 maxsteps_interval <- names(which(steps_perinterval == max(steps_perinterval)))
 ```
 
-the 5-minute interval "`r maxsteps_interval`", contains the maximum number of steps
+
+the 5-minute interval "835", contains the maximum number of steps
 
 ## Imputing missing values
 
